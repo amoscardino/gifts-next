@@ -18,8 +18,8 @@ const PersonForm = ({ person }: PersonFormProps) => {
     formState: { errors, isSubmitting }
   } = useForm<PersonDto>({ defaultValues: person });
 
-  const onSubmit = handleSubmit(async () => {
-    await savePersonAction(new FormData(formRef.current!));
+  const onSubmit = handleSubmit(async (person: PersonDto) => {
+    await savePersonAction(person);
   });
 
   const onDelete = async () => {

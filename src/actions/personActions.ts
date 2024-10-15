@@ -1,16 +1,11 @@
 'use server';
 
 import { redirect } from "next/navigation";
-import PersonDto from "../api/models/personDto";
-import { createPerson, deletePerson, updatePerson } from "../api/personApi";
 import { revalidateTag } from "next/cache";
+import { createPerson, deletePerson, updatePerson } from "../api/personApi";
+import PersonDto from "../api/models/personDto";
 
-const savePersonAction = async (formData: FormData) => {
-  const person = {
-    id: (formData.get('id') || 0) as number,
-    name: formData.get('name') as string,
-  } as PersonDto;
-  
+const savePersonAction = async (person: PersonDto) => {  
   if (person.id) {
     await updatePerson(person);
   } else {
