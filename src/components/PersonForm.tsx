@@ -1,22 +1,21 @@
 'use client';
 
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { deletePersonAction, savePersonAction } from "../actions/personActions";
 import PersonDto from "../api/models/personDto";
-import { useRef, useState } from "react";
 
 interface PersonFormProps {
   person: PersonDto;
 }
 
 const PersonForm = ({ person }: PersonFormProps) => {
-  const formRef = useRef<HTMLFormElement | null>(null);
-  const [isDeleting, setIsDeleting] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting }
   } = useForm<PersonDto>({ defaultValues: person });
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const onSubmit = handleSubmit(async (person: PersonDto) => {
     await savePersonAction(person);
@@ -28,7 +27,7 @@ const PersonForm = ({ person }: PersonFormProps) => {
   };
 
   return (
-    <form ref={formRef} onSubmit={onSubmit} className="card border rounded shadow">
+    <form onSubmit={onSubmit} className="card border rounded shadow">
       <div className="card-header">
         {person.id ? 'Edit' : 'Add'} Person
       </div>

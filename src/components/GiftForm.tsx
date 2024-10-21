@@ -1,9 +1,9 @@
 'use client';
 
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { deleteGiftAction, saveGiftAction } from "../actions/giftActions";
 import GiftDto from "../api/models/giftDto";
-import { useRef, useState } from "react";
 import { GiftStatus } from "../api/models/giftStatus";
 
 interface GiftFormProps {
@@ -11,16 +11,15 @@ interface GiftFormProps {
 }
 
 const GiftForm = ({ gift }: GiftFormProps) => {
-  const formRef = useRef<HTMLFormElement | null>(null);
-  const [isDeleting, setIsDeleting] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting }
   } = useForm<GiftDto>({ defaultValues: gift });
+  const [isDeleting, setIsDeleting] = useState(false);
 
-  const onSubmit = handleSubmit(async () => {
-    await saveGiftAction(new FormData(formRef.current!));
+  const onSubmit = handleSubmit(async (data) => {
+    await saveGiftAction(data);
   });
 
   const onDelete = async () => {
@@ -29,7 +28,7 @@ const GiftForm = ({ gift }: GiftFormProps) => {
   };
 
   return (
-    <form ref={formRef} onSubmit={onSubmit} className="card border rounded shadow">
+    <form onSubmit={onSubmit} className="card border rounded shadow">
       <div className="card-header">
         {gift.id ? 'Edit' : 'Add'} Gift
       </div>
