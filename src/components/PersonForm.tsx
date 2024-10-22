@@ -15,16 +15,16 @@ const PersonForm = ({ person }: PersonFormProps) => {
     formState: { errors }
   } = useForm<PersonDto>({ defaultValues: person });
 
-  const onSubmit = handleSubmit(async (person: PersonDto) => {
+  const onSubmit = async (person: PersonDto) => {
     await savePersonAction(person);
-  });
+  };
 
   const onDelete = async () => {
     await deletePersonAction(person.id!);
   };
 
   return (
-    <form onSubmit={onSubmit} className="card border rounded shadow">
+    <form onSubmit={handleSubmit(onSubmit)} className="card border rounded shadow">
       <div className="card-header">
         {person.id ? 'Edit' : 'Add'} Person
       </div>
@@ -52,7 +52,7 @@ const PersonForm = ({ person }: PersonFormProps) => {
         </button>
 
         {person.id && (
-          <button type="button" className="btn btn-outline-danger" onClick={onDelete}>
+          <button type="button" onClick={onDelete} className="btn btn-outline-danger">
             Delete
           </button>
         )}
