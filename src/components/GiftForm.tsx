@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { deleteGiftAction, saveGiftAction } from "../actions/giftActions";
 import GiftDto from "../api/models/giftDto";
@@ -14,16 +13,14 @@ const GiftForm = ({ gift }: GiftFormProps) => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting }
+    formState: { errors }
   } = useForm<GiftDto>({ defaultValues: gift });
-  const [isDeleting, setIsDeleting] = useState(false);
 
   const onSubmit = handleSubmit(async (data) => {
     await saveGiftAction(data);
   });
 
   const onDelete = async () => {
-    setIsDeleting(true);
     await deleteGiftAction(gift.id!);
   };
 
@@ -143,7 +140,6 @@ const GiftForm = ({ gift }: GiftFormProps) => {
         <button
           type="submit"
           className="btn btn-primary"
-          disabled={isSubmitting || isDeleting}
         >
           Save
         </button>
@@ -152,7 +148,6 @@ const GiftForm = ({ gift }: GiftFormProps) => {
           <button
             type="button"
             className="btn btn-outline-danger"
-            disabled={isSubmitting || isDeleting}
             onClick={onDelete}
           >
             Delete

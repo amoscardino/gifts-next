@@ -13,16 +13,14 @@ const PersonForm = ({ person }: PersonFormProps) => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting }
+    formState: { errors }
   } = useForm<PersonDto>({ defaultValues: person });
-  const [isDeleting, setIsDeleting] = useState(false);
 
   const onSubmit = handleSubmit(async (person: PersonDto) => {
     await savePersonAction(person);
   });
 
   const onDelete = async () => {
-    setIsDeleting(true);
     await deletePersonAction(person.id!);
   };
 
@@ -53,7 +51,6 @@ const PersonForm = ({ person }: PersonFormProps) => {
         <button
           type="submit"
           className="btn btn-primary"
-          disabled={isSubmitting || isDeleting}
         >
           Save
         </button>
@@ -62,7 +59,6 @@ const PersonForm = ({ person }: PersonFormProps) => {
           <button
             type="button"
             className="btn btn-outline-danger"
-            disabled={isSubmitting || isDeleting}
             onClick={onDelete}
           >
             Delete

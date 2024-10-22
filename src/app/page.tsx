@@ -5,8 +5,10 @@ import PersonCard from "../components/PersonCard";
 import GrandTotal from "../components/GrandTotal";
 
 export default async function Home() {
-  const people = await getPeople();
-  const gifts = await getGifts();
+  // const people = await getPeople();
+  // const gifts = await getGifts();
+  const [people, gifts] = await Promise.all([getPeople(), getGifts()]);
+
   const totalAmount = gifts.reduce((total, gift) => total + (gift.price || 0), 0);
 
   return (

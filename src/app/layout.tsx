@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
-export const metadata: Metadata = { title: "Gifts Next" };
+const metadata: Metadata = { title: "Gifts Next" };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
+const RootLayout = ({ children }: Readonly<{ children: React.ReactNode; }>) => {
   return (
     <html lang="en">
       <body className="container-xl min-vh-100 vstack gap-3 py-3 bg-body-tertiary">
@@ -36,4 +37,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       </body>
     </html>
   );
-}
+};
+
+export { metadata };
+export default RootLayout;
