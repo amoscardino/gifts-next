@@ -4,7 +4,7 @@ import Link from "next/link";
 import PersonCard from "../components/PersonCard";
 import GrandTotal from "../components/GrandTotal";
 
-export default async function Home() {
+const Home = async () => {
   // const people = await getPeople();
   // const gifts = await getGifts();
   const [people, gifts] = await Promise.all([getPeople(), getGifts()]);
@@ -30,4 +30,6 @@ export default async function Home() {
       <GrandTotal amount={totalAmount} />
     </div>
   );
-}
+};
+
+export default Home;

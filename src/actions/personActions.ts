@@ -5,11 +5,11 @@ import { revalidateTag } from "next/cache";
 import { createPerson, deletePerson, updatePerson } from "../api/personApi";
 import PersonDto from "../api/models/personDto";
 
-const savePersonAction = async (person: PersonDto) => {  
+const savePersonAction = async (person: PersonDto) => {
   if (person.id) {
     await updatePerson(person);
   } else {
-    await createPerson(person);
+    await createPerson({ ...person, id: 0 });
   }
 
   revalidateTag('person');

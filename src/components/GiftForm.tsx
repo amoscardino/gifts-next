@@ -137,19 +137,12 @@ const GiftForm = ({ gift }: GiftFormProps) => {
       </div>
 
       <div className="card-footer hstack flex-row-reverse justify-content-between">
-        <button
-          type="submit"
-          className="btn btn-primary"
-        >
+        <button type="submit" className="btn btn-primary">
           Save
         </button>
 
         {gift.id && (
-          <button
-            type="button"
-            className="btn btn-outline-danger"
-            onClick={onDelete}
-          >
+          <button type="button" onClick={onDelete} className="btn btn-outline-danger">
             Delete
           </button>
         )}

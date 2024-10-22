@@ -5,39 +5,37 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const metadata: Metadata = { title: "Gifts Next" };
 
-const RootLayout = ({ children }: Readonly<{ children: React.ReactNode; }>) => {
-  return (
-    <html lang="en">
-      <body className="container-xl min-vh-100 vstack gap-3 py-3 bg-body-tertiary">
-        <header>
-          <nav className="navbar navbar-expand-md bg-body border rounded shadow-sm">
-            <div className="container-fluid">
-              <a href="/" className="navbar-brand ms-sm-3 mb-0 h1">
-                <i className="bi bi-gift"></i>
-                &nbsp;
-                Gifts
-              </a>
-            </div>
-          </nav>
-        </header>
-
-        <main className="flex-grow-1">
+const Layout = ({ children }: { children: React.ReactNode; }) => (
+  <html lang="en">
+    <body className="container-xl min-vh-100 vstack gap-3 py-3 bg-body-tertiary">
+      <header>
+        <nav className="navbar navbar-expand-md bg-body border rounded shadow-sm">
           <div className="container-fluid">
-            <div className="row justify-content-center">
-              <div className="col-xl-6 col-lg-7 col-md-8 col-sm-10 col-xs-12">
-                {children}
-              </div>
+            <a href="/" className="navbar-brand ms-sm-3 mb-0 h1">
+              <i className="bi bi-gift"></i>
+              &nbsp;
+              Gifts
+            </a>
+          </div>
+        </nav>
+      </header>
+
+      <main className="flex-grow-1">
+        <div className="container-fluid">
+          <div className="row justify-content-center">
+            <div className="col-xl-6 col-lg-7 col-md-8 col-sm-10 col-xs-12">
+              {children}
             </div>
           </div>
-        </main>
+        </div>
+      </main>
 
-        <footer className="text-center text-muted">
-          Gifts Next {process.env.VERSION}
-        </footer>
-      </body>
-    </html>
-  );
-};
+      <footer className="text-center text-muted">
+        Gifts Next {process.env.VERSION}
+      </footer>
+    </body>
+  </html>
+);
 
 export { metadata };
-export default RootLayout;
+export default Layout;

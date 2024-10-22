@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { deletePersonAction, savePersonAction } from "../actions/personActions";
 import PersonDto from "../api/models/personDto";
@@ -48,19 +47,12 @@ const PersonForm = ({ person }: PersonFormProps) => {
       </div>
 
       <div className="card-footer hstack flex-row-reverse justify-content-between">
-        <button
-          type="submit"
-          className="btn btn-primary"
-        >
+        <button type="submit" className="btn btn-primary">
           Save
         </button>
 
         {person.id && (
-          <button
-            type="button"
-            className="btn btn-outline-danger"
-            onClick={onDelete}
-          >
+          <button type="button" className="btn btn-outline-danger" onClick={onDelete}>
             Delete
           </button>
         )}

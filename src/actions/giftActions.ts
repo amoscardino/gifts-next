@@ -9,7 +9,7 @@ const saveGiftAction = async (gift: GiftDto) => {
   if (gift.id) {
     await updateGift(gift);
   } else {
-    await createGift(gift);
+    await createGift({ ...gift, id: 0 });
   }
 
   revalidateTag('gift');
